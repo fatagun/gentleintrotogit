@@ -1,0 +1,691 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>A gentle introduction to git</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/moon.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style type="text/css">
+			p { text-align: left; }
+			small {text-align: left;}
+ 			img { border:none;}
+ 			.pcenter {text-align:  center;}
+ 			.gitimage { height: 60px; }
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides"> 
+				<section>
+					<h2>A gentle introduction to Git</h2>
+					<p class="pcenter">
+						<img src="images/git.png" class="gitimage" />
+					</p>
+					<p class="pcenter"><small>firat atagun</small> </p>
+					
+				</section>
+				<section>
+					<h5>How to navigate</h5>
+
+					<ul>
+						<li>Use arrow keys to browse the slides</li>
+						<li>CTRL+SHIFT+F to search </li>
+					</ul>
+				</section>
+ 
+				<section>
+					<section>
+						<h4>What is version control system?</h4>
+						<small>A software desinged to track changes to set of files over the time. 
+							VCS provides ability to travel between states or versions your project.</small>
+						<br/><br/>
+						<small>
+							Before; files/folders were copied and pasted. Then folders were renamed to indicate the version of the project. 
+							That was the way to version control projects. But that was hard to manage, search, find changes and maintain.
+						</small>
+					</section>
+					<section>
+						<small>
+							Then, Centralized Version Control systems were developed. ie: SVN, CVS. 
+							With centralized version control system users push and pull changes to and from a central server. 
+							Even though this was a great achievement compared to local version control systems, 
+							there were flaws, such as if the centralized server goes down, or files corrupt.
+						</small>
+					</section>
+					<section>
+						<small>
+							To overcome the limitations and introduce better way of working and collaboration, distributed version control systems developed. 
+							ie: git, mercurial. With this model every user gets a full copy of the project including full history and branches.
+						</small>
+					</section>
+					<section>
+						<h4>Distribution Model</h4>
+						<span>
+							Local, Centralized, Distributed. 
+						</span>	
+					</section>
+					<section data-background="#21618C"> 
+						<h4>History</h4>
+						<span>
+							 RCS -> CVS -> SVN -> Git
+						</span>	
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h5>What is Git?</h5>
+						<small>
+							Git is a distributed version control system. 
+						</small>
+					</section>
+					<section>
+						<p>
+							In fact, git is a content addressable file system and a persistent map with a version control system developed on top it. 
+							It has been designed to work with or without a centralized server.
+						</p>
+					</section>
+
+					<section>
+						<p>
+							While CVS and SVN designed to track files, git was designed to track content. 
+						</p>
+					</section>
+				</section>
+				
+				<section>
+					<section>
+						<h5>Goals of Git</h5>
+						<p class="fragment">
+							<em>Fully distributed</em> 
+						</p> 
+						<p class="fragment">
+							<em>Support non-linear development</em>
+						</p> 
+						<p class="fragment">
+							<em>Handle large projects efficiently.</em>
+						</p> 
+						<p class="fragment">
+							<em>Atomicity:</em> Every operation is atomic. 
+						</p> 
+						<p class="fragment">
+							<em>Performance:</em> It is very fast. 
+						</p> 
+						<p class="fragment">
+							<em>Security:</em> Uses checksum and hashing for authenticity. 
+						</p>
+					</section>
+				</section>
+				<section>
+					<h5>Installation</h5>
+					<p>
+						<a href="https://git-scm.com/downloads">Download</a> 
+						<br/>
+						Follow <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git ">instructions</a>  
+					</p>
+				</section>
+
+				<section>
+					<section>
+						<h5>Configuration</h5>
+						<p>
+							Once setup is complete you can start configuring git. 
+						</p>
+					</section>
+
+					<section>
+						<p>Setting up user name and email</p>
+						<pre><code class="hljs"># git config --global user.name username
+# git config --global user.email mailaddress</code></pre>
+						<p>If <em>--global</em> option is left out configuration only applies to the specific repository.</p>
+					</section>
+
+					<section>
+						<p>Setting alias for Commands</p>
+						<pre><code class="hljs" data-trim>
+	 						# git config --global alias.aliasname commandname 
+						</code></pre> 
+						<p>For example:<br/>
+<pre><code class="hljs" data-trim>
+	 						# git config --global alias.st status 
+						</code></pre>
+						</p>
+
+						<p>To view all the configuration options:<br/>
+<pre><code class="hljs" data-trim>
+	 						# git config --list 
+						</code></pre>
+						</p>
+					</section>
+
+				</section>
+
+				<section>
+					<h5>GUI Clients</h5>
+					<p>
+						There are several GUI clients. Some of are:
+						<ul>
+							<li>SourceTree</li>
+							<li>Github Desktop</li>
+							<li>Git Kraken</li>
+							<li>Smart git</li>
+						</ul> 
+					</p>
+				</section>
+				<section>
+					<section>
+						<h4>Getting Started with Git</h4> 
+					</section>
+					<section>
+						<p>Initialize a repository</p>
+						<pre><code class="hljs" data-trim>
+	 						# git init
+						</code></pre>
+					</section>
+					<section>
+						<p>Add file(s) to it</p>
+						<pre><code class="hljs" data-trim>
+	 						# git add file.name
+						</code></pre>
+					</section>
+					<section>
+						<p>Commit</p>
+						<pre><code class="hljs" data-trim>
+	 						# git commit -m "your commit message"
+						</code></pre>
+					</section> 
+					<section>
+						<p>Check Status</p>
+						<pre><code class="hljs" data-trim>
+	 						# git status 
+						</code></pre>
+					</section> 
+				</section>
+
+				<section>
+					<section>
+						<h5>Break down of basic commands</h5>
+					</section>
+					<section> 
+						<p>There are 3 areas in Git namely working area, staging area and repository.</p>
+						<p> <em>Working Area</em> <-> <em>Staging Area</em> <-> <em>Repository</em> </p>
+						<p>Files basically move right and left between the areas.</p>
+						<img src="images/areas.png" />
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim>
+	 						# git init
+						</code></pre>
+						<p>Creates a repository of the <em>working area</em>. You will see ".git" folder in your <em>working area</em>. That is your local repository. There are bunch of folders and files in .git folder go manage your source code. </p>
+						<img src="images/inworkingdirectory.png" />
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim>
+	 						# git add index.html
+						</code></pre>
+						<p>Adds the file to <em>staging area</em>.</p>
+						<img src="images/instaging.png" />
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim>
+	 						# git commit -m "my commit message"
+						</code></pre>
+						<p>Commits the file to the <em>repository</em>.</p>
+						<img src="images/inrepository.png" />
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h5>Renaming a file</h5>
+						<small>Only a file in staging area can be renamed by Git. If the file is not tracked by repository, you need to renaming with OS capabilities.</small>
+					</section>
+
+					<section>
+						<pre><code class="hljs" data-trim>
+							# git mv inde.html index.html
+							# git commit -m "renaming" 
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h4>Contents of a commit</h4>
+						<p>To see contents of a commit: </p>
+						<pre><code class="hljs" data-trim>
+							# git show 4f62eae1b 
+						</code></pre>
+					</section>
+					<section>
+						<p>If you like to see the parents of a commit you can use ^ (caret sign). If you like see the parent of a parent commit use two of them ^^.</p>
+
+						<pre><code class="hljs" data-trim>
+							# git show 4f62eae1b^
+						</code></pre>
+
+						<pre><code class="hljs" data-trim>
+							# git show 4f62eae1b^^
+						</code></pre>
+					</section>
+					<section>
+						<p>You can also use numbers.</p>
+						<pre><code class="hljs" data-trim>
+							# git show 4f62eae1b^2
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+
+					<section>
+						<h5>
+						  Undoing changes	
+						</h5>
+						<p>
+							Reset, checkout, clean and revert commands are used to undo changes. They are very powerful but also destructive.
+							They seem similar hence cause confusion which one to use. 
+						</p>
+					</section>
+
+					<section>
+						<h5>Checking out file</h5>
+						<p>You are working on a file in your working directory and haven't add it to index then, you want to undo all your changes, you can checkout the HEAD version by:</p>
+						<pre><code class="hljs" data-trim>
+							# git checkout filename
+						</code></pre>
+						
+					</section>
+					
+					<section>
+						<h5>
+						  Reset	
+						</h5>
+						<p>
+							There is file and commit based reset.
+						</p>
+					</section>
+
+					<section>
+						<p>Add a file from working directory to Index/Staging and if you like to undo and reset:</p>
+
+						<pre><code class="hljs" data-trim>
+							# git reset HEAD
+						</code></pre>
+						<p>Similarly following also removes an object from index. <em>--cached</em> also refers to staging area.</p>
+						<pre><code class="hljs" data-trim>
+							# git rm --cached index.html
+						</code></pre>
+					</section>
+
+					<section>
+						<p>Unstages changes, mode is --mixed:</p>
+						<pre><code class="hljs" data-trim>
+							# git reset HEAD
+						</code></pre>
+					</section>
+
+					<section>
+						<p>
+							Moves the committed objects back to staging. 
+						</p>
+
+						<pre><code class="hljs" data-trim>
+							# git reset --soft HEAD^
+						</code></pre>
+
+						<p>
+							Moves the commited object back to working directory. 
+						</p>
+
+						<pre><code class="hljs" data-trim>
+							# git reset --mixed HEAD^
+						</code></pre>
+
+						<p>
+							Following moves HEAD to previous commit. Destroys everything. 
+						</p>
+
+						<pre><code class="hljs" data-trim>
+							# git reset --hard HEAD^
+						</code></pre>
+					</section>
+
+					<section>
+						<p>Reset moves HEAD between commits based on the option between staging, working directory or to garbage.</p>
+
+						<img src="images/resetoptions.png" />
+					</section>
+
+					<section>
+						<p>Git reset can work with any commit Id or Reflog Id</p>
+						<p>HEAD can be resetted to any reference</p>
+					</section>
+
+					<section>
+						<h5>Git clean</h5>
+						<p>Removing untracked files can be done with following command:</p>
+						<pre><code class="hljs" data-trim>
+							# git clean 
+						</code></pre>
+					</section>
+
+					<section>
+						<h5>Git revert</h5>
+						<p>Reverts a commit:</p>
+						<pre><code class="hljs" data-trim>
+							# git revert bad6ct 
+						</code></pre>
+
+						<p>Revert causes a new commit. You can revert any commit in the history. Use with caution!</p>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h5>Git log</h5>
+						<pre><code class="hljs" data-trim>
+							# git log
+						</code></pre>
+						<p>Shows the history of repository and you can easily navigate through commits.</p>
+					</section>
+
+					<section>
+						<p>Git log can take several options and an alias can be created out of them.</p>
+					</section>
+
+					<section>
+						<p>Git log in one line</p>
+						<pre><code class="hljs" data-trim>
+							# git log --oneline
+						</code></pre>
+					</section>
+
+					<section>
+						<p>Git log with graph representation</p>
+						<pre><code class="hljs" data-trim>
+							# git log --graph
+						</code></pre>
+					</section>
+
+					<section>
+						<p>Git log shows reference information</p>
+						<pre><code class="hljs" data-trim>
+							# git log --decorate
+						</code></pre>
+					</section>
+
+					<section>
+						<p>Git log include branches and tags</p>
+						<pre><code class="hljs" data-trim>
+							# git log --branches --tags
+						</code></pre>
+					</section>
+
+					<section>
+						<p>Git log with several options</p>
+						<pre><code class="hljs" data-trim>
+							# git log --oneline --graph --decorate --branches --tags 
+						</code></pre>
+					</section>
+
+					<section>
+						<p>You can create alias for it.</p>
+						<pre><code class="hljs" data-trim>
+							# git config --global alias.lol "log --oneline --graph --decorate --branches --tags" 
+						</code></pre>
+					</section>
+
+					<section>
+						<p>To view the diff between branches:</p>
+
+						<pre><code class="hljs" data-trim>
+							# git log master..feature 
+						</code></pre>
+
+						<p>Speaking of diff...</p>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h5>Git diff</h5>
+						<p>Can be used to view the differences between commits. External programs can be bind to view it in a more visual way.</p>
+					</section>
+
+					<section>
+						<p>
+							Diff between HEAD and one commit earlier
+						</p>
+						<pre><code class="hljs" data-trim>
+							# git diff HEAD HEAD^ 
+						</code></pre>
+					</section>
+
+					<section>
+						<p>
+							Diff between HEAD and two commit earlier
+						</p>
+						<pre><code class="hljs" data-trim>
+							# git diff HEAD HEAD^^ 
+						</code></pre>
+					</section>
+
+					<section>
+						<p>
+							Diff between any commits
+						</p>
+						<pre><code class="hljs" data-trim>
+							# git diff 3e2b 28dd 
+						</code></pre>
+					</section>
+
+					<section>
+						<p>
+							Diff between branches
+						</p>
+						<pre><code class="hljs" data-trim>
+							# git diff master develop 
+						</code></pre>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h5>Branches</h5>
+						<p>Branches are seperate commit history. They can be thought of sticky notes in your history.</p>
+					</section>
+
+					<section>
+						<p>To create a branch</p>
+						<pre><code class="hljs" data-trim>
+							# git checkout -b develop
+						</code></pre>
+					</section>
+
+					<section>
+						<p>To view branches</p>
+						<pre><code class="hljs" data-trim>
+							# git branch 
+						</code></pre>
+					</section>
+
+					<section>
+						<p>To navigate between branches</p>
+						<pre><code class="hljs" data-trim>
+							# git checkout development
+							# git checkout feature1  
+						</code></pre>
+					</section>
+
+					<section>
+						<p>To rename and delete.</p>
+						<pre><code class="hljs" data-trim>
+							# git branch -m development develop
+							# git branch -d feature1  
+						</code></pre>
+					</section>
+
+					<section>
+						<p>Merging branches is as easy as:</p>
+						<pre><code class="hljs" data-trim>
+							# git merge develop
+						</code></pre>
+					</section>
+
+					<section>
+						<p>Git merge looks like: </p>
+						<img src="images/merging.png" style="height:400px;" />
+					</section>
+
+					<section>
+						<p>Git merge rebase looks like: </p>
+						<img src="images/rebasing.png" style="height:400px;" />
+						<p>Rebasing rewrites history. Helps working with a cleaner history.</p>
+					</section> 
+
+					<section>
+						<p>Merging is more efficient in git.</p>
+						<ul>
+							<li>Merging is local</li>
+						</ul>
+					</section>
+ 
+				</section>
+
+				<section>
+					<section>
+						<h4>Cherry Picking</h4>
+					</section>
+					<section>
+						<p>It is possible to cherry pick specific commits from different branches.</p>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim>
+							# git cherry-pick 4f62eae1
+						</code></pre>
+						<p>Cherry picks a commit from another branch.</p>
+						<p><em>-x</em> writes to commit log that the specified commit has been cherry picked.</p>
+					</section>
+					<section>
+						<img src="images/cherrypicking_commits.png">
+					</section>
+				</section>
+ 
+				<section>
+					<section>
+						<h4>Stash</h4>
+						<p>Stash is another area where files can be stored for a while.</p>
+						<p>Stash can be though of stack. It works with push and pop methods.</p>
+						<p>By default only tracked files can be stored in stash. Objects should be indexed first to be stashed.</p>
+					</section>
+					<section data-transition="zoom" data-background="#4d7e65" data-background-transition="zoom">
+						<h5>Stash my current state</h5>
+						<pre><code class="hljs" data-trim>
+	 						# vim index.html
+	 						# git add index.html
+	 						# git stash
+						</code></pre>
+						<p>index.html is now stashed. Additionally, current commit is checked out.</p>
+					</section>
+					<section data-transition="zoom" data-background="#4d7e65" data-background-transition="zoom">
+						<h5>List of stashes can be seen.</p>
+						<pre><code class="hljs" data-trim>
+	 						# git stash list
+						</code></pre> 
+					</section>
+					<section data-transition="zoom" data-background="#4d7e65" data-background-transition="zoom">
+						<h5>Recovering from stash</h5>
+						<pre><code class="hljs" data-trim>
+	 						# git stash pop
+	 						# git stash apply
+						</code></pre> 
+					</section>
+					<section data-transition="zoom" data-background="#4d7e65" data-background-transition="zoom">
+						<h5>Delete a stash</h5>
+						<pre><code class="hljs" data-trim>
+	 						# git stash drop
+						</code></pre> 
+					</section>
+					<section data-transition="zoom" data-background="#4d7e65" data-background-transition="zoom">
+						<h5>Delete all stashes</h5>
+						<pre><code class="hljs" data-trim>
+	 						# git stash clear
+						</code></pre> 
+					</section>
+				</section>
+				 
+				<section>
+					<section>
+						<h5>Working with Remotes</h5>
+						
+						<pre><code class="hljs" data-trim>
+	 						# git clone URL
+							# git push origin master
+							# git push origin branchname
+	 						# git pull
+						</code></pre>
+						<p>
+							Git pull is same with:
+						</p> 
+						<pre><code class="hljs" data-trim>
+	 						# git fetch
+	 						# git merge
+						</code></pre>
+					</section>
+				</section> 
+
+				<section data-background="#2E86C1">
+					<h3>The end.</h3>		
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/search/search.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+ 
+		</script>
+	</body>
+</html>
